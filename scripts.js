@@ -8,7 +8,7 @@ container.setAttribute('class', 'container')
 
 app.appendChild(logo)
 app.appendChild(container)
-
+/*
 var request = new XMLHttpRequest()
 request.open('GET', 'https://ghibliapi.herokuapp.com/films', true)
 request.onload = function () {
@@ -38,3 +38,23 @@ request.onload = function () {
 }
 
 request.send()
+*/
+
+fetch('http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=2C62A2D97126E3B33634AF3099DF67D5&steamid=76561198105521294&format=json&include_appinfo=true')
+    .then(
+        function(response) {
+            if (response.status != 200) {
+                console.log('Something went wrong: ' + response.status);
+                return;
+            }
+            response.json().then(function(data) {
+                console.log(data);
+            });
+        }
+    )
+    .catch(function(err) {
+        console.log('Fetch error :-S', err);
+    });
+
+// http://api.steampowered.com/<interface name>/<method name>/v<version>/?key=<api key>&format=<format>
+// My steamid: 76561198105521294
